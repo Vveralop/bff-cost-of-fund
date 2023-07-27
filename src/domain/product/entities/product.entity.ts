@@ -37,7 +37,7 @@ export class ValidateHeaderDto{
     @IsNotEmpty()
     @IsDefined()
     @Expose({ name: 'transaction-id' })
-    transactionid: string;
+    transactionId: string;
 
     @ApiProperty({
         description: 'Id de Canal',

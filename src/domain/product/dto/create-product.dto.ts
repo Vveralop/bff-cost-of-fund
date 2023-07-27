@@ -6,106 +6,76 @@ export class ProductId {
 }
 
 class ForecastCurve {
-  @ApiProperty()
   curveName: string;
-  @ApiProperty()
   forecastCurve: string;
-  @ApiProperty()
   fixingFrequency: string;
 }
 
 class _Options {
-  @ApiProperty()
   @IsNotEmpty()
   id: number;
 
-  @ApiProperty()
   @IsNotEmpty()
   productName: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   description: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  isActive: boolean;
-
-  @ApiProperty()
   @IsNotEmpty()
   rateType: string;
 
-  @ApiProperty()
+  @IsNotEmpty()
+  isActive: boolean;
+
   @IsNotEmpty()
   structure: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   dayCounter: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   compounding: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   allowPartialDisbursements: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   currency: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   minNotional: number;
 
-  @ApiProperty()
   @IsNotEmpty()
   maxNotional: number;
 
   @IsNotEmpty()
   minStartTenor: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   maxStartTenor: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   maxEndTenor: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   discountCurve: string;
 
-  @ApiProperty({
-    type: ForecastCurve,
-    isArray: true,
-  })
   forecastCurves: [ ForecastCurve ];
 
-  @ApiProperty()
   @IsNotEmpty()
   paymentFrequencies: [ string ];
 }
 
 export class CreateProductInput {
-  @ApiProperty()
   @IsNotEmpty()
   category: string;
 
-  @ApiProperty()
   @IsNotEmpty()
   description: string;
   
-  @ApiProperty()
   @IsNotEmpty()
   productType: string;
 
-  @ApiProperty({
-    type: _Options,
-    isArray: true,
-  })
   @IsNotEmpty()
   options: [ _Options ];
 }

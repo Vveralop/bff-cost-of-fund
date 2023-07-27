@@ -1,21 +1,21 @@
-import { Injectable, HttpStatus } from '@nestjs/common';
-import { CreateProductInput } from '../dto/create-product.dto';
+import { Injectable } from '@nestjs/common';
+import { ProductId } from '../dto/create-product.dto';
 import { ConfigService } from '@nestjs/config';
-import { ResultBclCreateProduct, ResultProduct } from '../entities/product.entity';
+import { ResultBclCreateProduct } from '../entities/product.entity';
 import { LoggerService } from '../../../adapter/Logger/logger.service';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
 
 @Injectable()
-export class ProductService {
+export class ProductDeleteService {
     constructor(private readonly httpService: HttpService,
                 private loggerService: LoggerService,
                 private configService: ConfigService) {}
 
-    async createProduct(body: CreateProductInput, transactionId: string, channelId: string): Promise<ResultBclCreateProduct>{
+    async deleteProduct(id: ProductId, transactionId: string, channelId: string): Promise<ResultBclCreateProduct>{
         try {
             const path_inner_acl = this.configService.get<string>('PATH_INNER_BCL');
-            const url = `${path_inner_acl}/product`;
+            const url = `${path_inner_acl}/product/${id}`;
             const axiosRequestConfig = {
                 headers: {
                   'Content-Type': 'application/json',
@@ -27,20 +27,21 @@ export class ProductService {
                   'application': this.configService.get<string>('APPLICATION'),
                   'timestamp': String(new Date())
                 },
-                body: body,
               };
-              const dataACL = {}
-              const resultSet = await this.httpService.post(url, dataACL, axiosRequestConfig)
+              const resultSet = await this.httpService.delete(url, axiosRequestConfig)
               const response = await lastValueFrom(resultSet);
-              const dataResponseApi: ResultBclCreateProduct = response.data;
-              //retornar códigos
+              const dataResponseApi: ResultBclCreateProduct = { 
+                 statusCode: 200, 
+                 message: 'Record Deleted',
+                 data: response.data
+              }
               return dataResponseApi;
         } catch (error) {
             if(!error.response){
                 this.loggerService.catchError(
-                    "500",
+                    error.code,
                     error.cause,
-                    error.code
+                    error.message
                 )
             }
             if(error.response.statusCode){

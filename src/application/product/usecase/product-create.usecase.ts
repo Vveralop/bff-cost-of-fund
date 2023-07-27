@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductInput } from '../../../domain/product/dto/create-product.dto';
-import { ProductService } from '../../../domain/product/service/product.service';
+import { ProductCreateService } from '../../../domain/product/service/product-create.service';
 
 @Injectable()
-export class ProductUseCase {
-    constructor(private productService: ProductService){}
+export class ProductCreateUseCase {
+    constructor(private productService: ProductCreateService){}
 
     createProduct(body: CreateProductInput, transactionId: string, channelId: string){
         return this.productService.createProduct(body, transactionId, channelId);
