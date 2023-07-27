@@ -48,19 +48,19 @@ export class ValidateHeaderDto{
     @Expose({ name: 'channel-id' })
     channelId: string;
 
-    @ApiProperty({
-        description: 'Id Aplicación',
-    })
-    @IsNotEmpty()
-    @IsDefined()
-    @Expose({ name: 'application' })
-    application: string;
+    // @ApiProperty({
+    //     description: 'Id Aplicación',
+    // })
+    // @IsNotEmpty()
+    // @IsDefined()
+    // @Expose({ name: 'application' })
+    // application: string;
 
-    @ApiProperty({
-        description: 'Id de Canal',
-    })
-    @IsNotEmpty()
-    @IsDefined()
-    @Expose({ name: 'timestamp' })
-    timestamp: string;
+    // @ApiProperty({
+    //     description: 'Id de Canal',
+    // })
+    // @IsNotEmpty()
+    // @IsDefined()
+    // @Expose({ name: 'timestamp' })
+    // timestamp: string;
 }

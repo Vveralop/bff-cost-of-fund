@@ -29,10 +29,11 @@ class _Options {
 
   @ApiProperty()
   @IsNotEmpty()
-  rateType: string;
-
-  @IsNotEmpty()
   isActive: boolean;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  rateType: string;
 
   @ApiProperty()
   @IsNotEmpty()

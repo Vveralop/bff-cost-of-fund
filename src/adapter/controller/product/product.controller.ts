@@ -1,5 +1,5 @@
 import { UseFilters, Controller, Post, HttpStatus, Headers, Body } from '@nestjs/common';
-import { ApiTags, ApiOkResponse, ApiUnauthorizedResponse, ApiNotFoundResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOkResponse, ApiUnauthorizedResponse, ApiNotFoundResponse, ApiBadRequestResponse } from '@nestjs/swagger';
 import { ProductUseCase } from '../../../application/product/usecase/product.usecase';
 import { CreateProductInput } from '../../../domain/product/dto/create-product.dto';
 import { ResultBclCreateProduct, ValidateHeaderDto } from '../../../domain/product/entities/product.entity';
@@ -15,12 +15,10 @@ export class ProductController {
     @ApiOkResponse({ description: 'Record Created' })
     @ApiUnauthorizedResponse({ status: HttpStatus.UNAUTHORIZED, description: "Unauthorized operation" })
     @ApiNotFoundResponse({ status: HttpStatus.NOT_FOUND, description: 'Operation not found' })
+    @ApiBadRequestResponse({ status: HttpStatus.BAD_REQUEST, description: 'Json is not valid' })
     async createProduct(@Body() body: CreateProductInput, @Headers() headers: ValidateHeaderDto): 
         Promise<ResultBclCreateProduct | any> {
-        const channelId = headers['channel-id'];
-        const transactionId = headers['transaction-id'];
-        const val = await this.productUseCase.createProduct(body, transactionId, channelId );
-        return val;
+        return await this.productUseCase.createProduct(body, headers.transactionid, headers.channelId);
     }
 }
 

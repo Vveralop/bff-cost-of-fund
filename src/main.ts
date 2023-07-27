@@ -23,6 +23,14 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, validateCustomDecorators: true }));
   app.useLogger(app.get(Logger));
   const port = app.get(ConfigService).get<number>('PORT');
-  await app.listen(port);
+
+  const listenAddress = app.get(ConfigService).get<string>('LISTEN_ADDRESS');
+  await app.listen(port).then(() => {
+    console.log(
+      `\n \x1B[32m➜\x1B[0m Local: \x1B[36mhttp://${listenAddress}:${port}/${apiPrefix} \n \x1B[0m`,
+    );
+  }
+);
+
 }
 bootstrap();

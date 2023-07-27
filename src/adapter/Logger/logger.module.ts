@@ -27,7 +27,7 @@ import { LoggerService } from "./logger.service";
 						correlationID: randomUUID(),
 						spanID: req.headers[SPAN_ID],
 						//payload: req['body']!,  Devolver
-						payload: '{body}',
+						payload: req.headers,
 						parentID: req.headers[PARENT_ID] ?? '',
 						transactionID: req.headers[TRANSACTION_ID] ?? randomUUID(),
 						type: process.env.TYPE,
