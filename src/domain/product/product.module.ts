@@ -1,19 +1,31 @@
 import { Module } from '@nestjs/common';
-import { ProductCreateService } from './service/product-create.service';
-import { ProductCreateController } from '../../adapter/controller/product/product-create.controller';
+import {} from '../../adapter/controller/product/product-create.controller';
 import { LoggerService } from '../../adapter/Logger/logger.service';
 import { ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
-import { ProductCreateUseCase } from '../../application/product/usecase/product-create.usecase';
-import { ProductUpdateController } from '../../adapter/controller/product/product-update.controller';
-import { ProductUpdateUseCase } from '../../application/product/usecase/product-update.usecase';
-import { ProductUpdateService } from './service/product-update.service';
-import { ProductSelectController } from '../../adapter/controller/product/product-select.controller';
-import { ProductSelectUseCase } from '../../application/product/usecase/product-select.usecase';
-import { ProductSelectService } from './service/product-select.service';
-import { ProductDeleteService } from './service/product-delete.service';
-import { ProductDeleteUseCase } from '../../application/product/usecase/product-delete.usecase';
-import { ProductDeleteController } from '../../adapter/controller/product/product-delete.controller';
+import {} from '../../adapter/controller/product/product-update.controller';
+import {} from '../../adapter/controller/product/product-select.controller';
+import {
+  ProductSelectUseCase,
+  ProductSelectAllUseCase,
+  ProductDeleteUseCase,
+  ProductUpdateUseCase,
+  ProductCreateUseCase,
+} from '../../application/product/usecase';
+import {
+  ProductSelectService,
+  ProductSelectAllService,
+  ProductDeleteService,
+  ProductUpdateService,
+  ProductCreateService,
+} from './service';
+import {
+  ProductDeleteController,
+  ProductSelectController,
+  ProductSelectAllController,
+  ProductUpdateController,
+  ProductCreateController,
+} from '../../adapter/controller/product';
 
 @Module({
   imports: [HttpModule],
@@ -23,17 +35,20 @@ import { ProductDeleteController } from '../../adapter/controller/product/produc
     ProductCreateService,
     ProductUpdateService,
     ProductSelectService,
+    ProductSelectAllService,
     ProductDeleteService,
     ProductCreateUseCase,
     ProductUpdateUseCase,
     ProductSelectUseCase,
-    ProductDeleteUseCase
+    ProductSelectAllUseCase,
+    ProductDeleteUseCase,
   ],
   controllers: [
-    ProductCreateController, 
-    ProductUpdateController, 
-    ProductSelectController, 
-    ProductDeleteController
-    ],
+    ProductCreateController,
+    ProductUpdateController,
+    ProductSelectController,
+    ProductSelectAllController,
+    ProductDeleteController,
+  ],
 })
 export class ProductModule {}

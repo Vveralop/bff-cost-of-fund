@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ProductId } from '../../../domain/product/dto/create-product.dto';
-import { ProductDeleteService } from '../../../domain/product/service/product-delete.service';
+import { ProductDeleteService } from '../../../domain/product/service';
 
 @Injectable()
 export class ProductDeleteUseCase {

@@ -1,7 +1,7 @@
 import { UseFilters, Controller, HttpStatus, Headers, Body, Patch, Param } from '@nestjs/common';
 import { ApiBody, ApiTags, ApiOkResponse, ApiUnauthorizedResponse, ApiNotFoundResponse, ApiParam, ApiOperation } from '@nestjs/swagger';
-import { ProductUpdateUseCase } from '../../../application/product/usecase/product-update.usecase';
-import { CreateProductInput, ProductId } from '../../../domain/product/dto/create-product.dto';
+import { ProductUpdateUseCase } from '../../../application/product/usecase';
+import { CreateProductInput } from '../../../domain/product/dto/create-product.dto';
 import { ResultBclCreateProduct, ValidateHeaderDto } from '../../../domain/product/entities/product.entity';
 import { HttpExceptionFilter } from '../../../shared/interceptor/http.exception.filter';
 

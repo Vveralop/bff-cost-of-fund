@@ -1,20 +1,18 @@
 import {
   UseFilters,
   Controller,
-  Post,
   HttpStatus,
   Headers,
-  Body,
+  Get,
+  Param,
 } from '@nestjs/common';
 import {
-  ApiBody,
   ApiTags,
   ApiOkResponse,
   ApiUnauthorizedResponse,
   ApiNotFoundResponse,
 } from '@nestjs/swagger';
-import { ProductCreateUseCase } from '../../../application/product/usecase';
-import { CreateProductInput } from '../../../domain/product/dto/create-product.dto';
+import { ProductSelectAllUseCase } from '../../../application/product/usecase';
 import {
   ResultBclCreateProduct,
   ValidateHeaderDto,
@@ -24,12 +22,11 @@ import { HttpExceptionFilter } from '../../../shared/interceptor/http.exception.
 @ApiTags('Save product data')
 @UseFilters(HttpExceptionFilter)
 @Controller('product')
-export class ProductCreateController {
-  constructor(private productCreateUseCase: ProductCreateUseCase) {}
+export class ProductSelectAllController {
+  constructor(private productSelectAllUseCase: ProductSelectAllUseCase) {}
 
-  @Post()
-  @ApiBody({ type: CreateProductInput })
-  @ApiOkResponse({ description: 'Created' })
+  @Get()
+  @ApiOkResponse({ description: 'OK' })
   @ApiUnauthorizedResponse({
     status: HttpStatus.UNAUTHORIZED,
     description: 'Unauthorized operation',
@@ -38,16 +35,11 @@ export class ProductCreateController {
     status: HttpStatus.NOT_FOUND,
     description: 'Operation not found',
   })
-  async createProduct(
-    @Body() body: CreateProductInput,
+  async selectProduct(
     @Headers() headers: ValidateHeaderDto,
   ): Promise<ResultBclCreateProduct | any> {
     const transac = headers.transactionId;
     const channelid = headers.channelId;
-    return await this.productCreateUseCase.createProduct(
-      body,
-      transac,
-      channelid,
-    );
+    return await this.productSelectAllUseCase.selectProduct(transac, channelid);
   }
 }

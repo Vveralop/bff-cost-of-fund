@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  node:
+    image: cl-itau-bff-tesoreria-empresa:development
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: development
+    ports:
+      #- "${HOST_PORT}:${PORT}"
+      - "3010:3010"
+    env_file:
+      - .env
+    volumes:
+      - "./:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    command: npm run start:dev

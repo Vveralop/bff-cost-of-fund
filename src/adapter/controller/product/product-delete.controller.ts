@@ -1,6 +1,6 @@
 import { UseFilters, Controller, HttpStatus, Headers, Param, Delete } from '@nestjs/common';
-import { ApiBody, ApiTags, ApiOkResponse, ApiUnauthorizedResponse, ApiNotFoundResponse } from '@nestjs/swagger';
-import { ProductDeleteUseCase } from '../../../application/product/usecase/product-delete.usecase';
+import { ApiTags, ApiOkResponse, ApiUnauthorizedResponse, ApiNotFoundResponse } from '@nestjs/swagger';
+import { ProductDeleteUseCase } from '../../../application/product/usecase';
 import { ResultBclCreateProduct, ValidateHeaderDto } from '../../../domain/product/entities/product.entity';
 import { HttpExceptionFilter } from '../../../shared/interceptor/http.exception.filter';
 

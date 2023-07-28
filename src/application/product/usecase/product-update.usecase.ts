@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductInput, ProductId } from '../../../domain/product/dto/create-product.dto';
-import { ProductUpdateService } from '../../../domain/product/service/product-update.service';
+import { ProductUpdateService } from '../../../domain/product/service';
 
 @Injectable()
 export class ProductUpdateUseCase {

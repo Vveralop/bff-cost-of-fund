@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ProductModule } from './domain/product/product.module';
 import { LoggerModule } from './adapter/Logger/logger.module';
 import { TerminusModule } from '@nestjs/terminus';
@@ -15,7 +13,7 @@ import { HealthModule } from './domain/health/health.module';
     TerminusModule,
     InterceptorModule,
     HealthModule,
-    ProductModule
+    ProductModule,
   ],
   controllers: [],
   providers: [],
