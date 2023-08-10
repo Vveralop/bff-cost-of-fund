@@ -19,13 +19,11 @@ import {
   ProductUpdateService,
   ProductCreateService,
 } from './service';
-import {
-  ProductDeleteController,
-  ProductSelectController,
-  ProductSelectAllController,
-  ProductUpdateController,
-  ProductCreateController,
-} from '../../adapter/controller/product';
+import { ProductDeleteController } from '../../adapter/controller/product/product-delete.controller';
+import { ProductSelectController } from '../../adapter/controller/product/product-select.controller';
+import { ProductSelectAllController } from '../../adapter/controller/product/product-select-all.controller';
+import { ProductCreateController } from '../../adapter/controller/product/product-create.controller';
+import { ProductUpdateController } from '../../adapter/controller/product/product-update.controller';
 
 @Module({
   imports: [HttpModule],

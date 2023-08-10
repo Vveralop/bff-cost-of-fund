@@ -1,12 +1,13 @@
-project:
-  language: Javascript
+#Project default: c# o JavaScript
+project: 
+  language: 
   framework:
-    name: "NestJs"
-    version: 8
-  mainFile: "package.json"
-  unitTestFramework: "NUnit"
-  unitTestFolder: ""
-  dockerPath: ""
+    name:
+    version:
+  mainFile:
+  unitTestFramework:
+  unitTestFolder:
+  dockerPath:
 vars:
   development:
   quality:

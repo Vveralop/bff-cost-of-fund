@@ -1,17 +1,21 @@
-version: '3.4'
+version: '3.8'
 services:
   node:
-    image: cl-itau-bff-tesoreria-empresa:development
+    image: cl-itau-bff-tesoreria:development
     build:
       context: .
       dockerfile: ./Dockerfile
       target: development
     ports:
-      #- "${HOST_PORT}:${PORT}"
-      - "3010:3010"
+      - "${HOST_PORT}:${PORT}"
     env_file:
       - .env
     volumes:
       - "./:/usr/src/app"
       - "/usr/src/app/node_modules"
     command: npm run start:dev
+    networks:
+      - united-containers
+networks:
+  united-containers:
+    external: true

@@ -1,127 +1,94 @@
-replicaCount: 1
+replicaCount:
 
-serviceAccount: currency-exchange-pj-dev-sa
+serviceAccount:
 
 volumes:
   list:
-  - name: secrets-store-inline
+  - name:
     csi:
-      driver: secrets-store.csi.k8s.io
-      readOnly: true
+      driver:
+      readOnly:
       volumeAttributes:
-        secretProviderClass: "secrets-provider-currency-exchange-pj"
+        secretProviderClass:
 
-nameOverride: ""
-fullnameOverride: ""
 
-podSecurityContext: {}
-  # fsGroup: 2000
+nameOverride:
+fullnameOverride:
 
-securityContext: {}
+podSecurityContext:
+  # fsGroup:
+
+securityContext:
   # capabilities:
   #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
+  # readOnlyRootFilesystem:
+  # runAsNonRoot:
+  # runAsUser:
 
 container:
   image:
-    pullPolicy: Always
+    pullPolicy:
   ports:
-    - name: http
-      containerPort: 3010
-      protocol: TCP
+    - name:
+      containerPort:
+      protocol:
   volumeMounts:
     list:
-     - name: secrets-store-inline
-       mountPath: "/mnt/secrets-store"
-       readOnly: true
+     - name:
+       mountPath:
+       readOnly:
 
 vars:
-  enabled: true
+  enabled:
   list:
-    - name: PORT
-      value: "3010"
-    - name: LOGGER_LEVEL
-      value: "trace"
-    - name: NODE_OPTIONS
-      value: "--use-openssl-ca"
-    - name: PATH_INNER_BCL
-      value: "https://gw.dev.apis.itau.cl/inner/bcl/currency-exchange/v1"
-    - name: INNER_BCL_CLIENT_ID
-      value: "890e6577f2f1a941032215ea63b63a1d"
-    - name: ENVIRONMENT
-      value: "dev"
-    - name: TYPE
-      value: "bff"
-    - name: COMPONENT
-      value: "bff-currency-exchange-pj: 0.0.1"
-    - name: APP_ID
-      value: "2198"
-    - name: INNER_BCL_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: secrets-dev-bff-currency-exchange-pj
-          key: bcl-apikey
-    - name: PATH_INNER_ACL
-      value: "https://apiindes.itauchile.cl/inner/acl/currency-exchange-forex/v1/search-historical-records/execute/"
-    - name: APPLICATIONS
-      value: "PORTAL" 
-    - name: INNER_ACL_CLIENT_ID
-      value: "4c5b00d836475ae67de990c51cdc2bbc"
-    - name: INNER_ACL_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: secrets-dev-bff-currency-exchange-pj
-          key: acl-apikey
+      - name:
+        value:
 
 secrets:
 
-livenessEnabled: true
+livenessEnabler:
 livenessProbe:
   httpGet:
-    path: /health
-    port: http
-  initialDelaySeconds: 5
-  periodSeconds: 10
+    path:
+    port:
+  initialDelaySeconds:
+  periodSeconds:
 
-readinessEnabled: true
+readinessEnabler:
 readinessProbe:
   httpGet:
-    path: /health
-    port: http
-  initialDelaySeconds: 5
-  periodSeconds: 10
+    path:
+    port:
+  initialDelaySeconds:
+  periodSeconds:
 
-service: #PR-PREGUNTAR a CLOUDOPS
-  type: ClusterIP
-  port: 3010 
+service:
+  type:
+  port:
 
 ingress:
   ingressClassName: ingress-internal
-  enabled: true
+  enabled:
   annotations:
     alb.ingress.kubernetes.io/target-type: 'ip'
-    alb.ingress.kubernetes.io/scheme: internal
-    alb.ingress.kubernetes.io/group.name: alb-dev-bff-priv
-    alb.ingress.kubernetes.io/healthchek-path: /health
+    alb.ingress.kubernetes.io/scheme:
+    alb.ingress.kubernetes.io/group.name:
+    alb.ingress.kubernetes.io/healthcheck-path:
   rules:
-    host: bfftesoreriapj-2109.bff-dev-ms.clouditauchile.cl
-    path: "/"
+    host:
+    path:
+    
 
 resources:
   limits:
-    cpu: 270m
-    memory: 479Mi
+    cpu:
+    memory:
   requests:
-    cpu: 103m
-    memory: 220Mi
+    memory:
+    cpu:
 
 autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 2
-  targetCPUUtilizationPercentage: 60
-  #targetMemoryUtilizationPercentage: 70
+  enabled:
+  minReplicas:
+  maxReplicas:
+  targetCPUUtilizationPercentage:
